@@ -1,0 +1,29 @@
+{
+  "projectName": "rtv-social-automation",
+  "description": "Autonomous social media automation platform for agency operations",
+  "permissions": {
+    "allow": [
+      "Bash(pnpm:*)",
+      "Bash(npm:*)",
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)"
+    ]
+  },
+  "mcpServers": {
+    "filesystem": {
+      "enabled": true
+    },
+    "memory": {
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "enabled": true
+    }
+  }
+}
