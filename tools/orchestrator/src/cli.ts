@@ -20,6 +20,7 @@ import chalk from 'chalk';
 import ora from 'ora';
 import * as path from 'path';
 import * as fs from 'fs/promises';
+import * as fsSync from 'fs';
 import { Orchestrator } from './orchestrator.js';
 import { Sprint, SPRINT_NAMES, AGENT_TRACKS } from './types.js';
 
@@ -35,21 +36,19 @@ function findProjectRoot(): string {
 
   // Check if we're in the project root (has pnpm-workspace.yaml)
   const workspaceYaml = path.join(cwd, 'pnpm-workspace.yaml');
-  try {
-    require('fs').accessSync(workspaceYaml);
+  if (fsSync.existsSync(workspaceYaml)) {
     return cwd;
-  } catch {
-    // Check if we're in tools/orchestrator
-    const parentParent = path.resolve(cwd, '..', '..');
-    const parentWorkspaceYaml = path.join(parentParent, 'pnpm-workspace.yaml');
-    try {
-      require('fs').accessSync(parentWorkspaceYaml);
-      return parentParent;
-    } catch {
-      // Default to cwd
-      return cwd;
-    }
   }
+
+  // Check if we're in tools/orchestrator
+  const parentParent = path.resolve(cwd, '..', '..');
+  const parentWorkspaceYaml = path.join(parentParent, 'pnpm-workspace.yaml');
+  if (fsSync.existsSync(parentWorkspaceYaml)) {
+    return parentParent;
+  }
+
+  // Default to cwd
+  return cwd;
 }
 
 const PROJECT_ROOT = findProjectRoot();
