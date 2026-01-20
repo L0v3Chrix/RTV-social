@@ -42,7 +42,7 @@
     "@opentelemetry/sdk-metrics": "1.21.0",
     "@opentelemetry/sdk-node": "0.48.0",
     "@opentelemetry/sdk-trace-base": "1.21.0",
-    "@opentelemetry/sdk-trace-node": "1.21.0",
+    "@opentelemetry/sdk-trace-node": "2.4.0",
     "@opentelemetry/semantic-conventions": "1.21.0",
     "@rtv/types": "workspace:*",
     "pino": "^10.2.1",
