@@ -1,45 +1,99 @@
 /**
  * Brand Kits table schema
  *
- * Defines brand voice, colors, and visual identity for a client.
+ * Defines brand voice, ICP, compliance, and visual identity for a client.
  * Used by AI agents to maintain consistent brand messaging.
  */
 
-import { pgTable, varchar, jsonb, boolean, index, foreignKey } from 'drizzle-orm/pg-core';
+import { pgTable, varchar, jsonb, integer, index, foreignKey, unique } from 'drizzle-orm/pg-core';
 import { idColumn, timestamps, clientIdColumn } from './base.js';
 import { clients } from './clients.js';
 
 /**
- * Brand tone configuration
+ * Voice style configuration
  */
-export interface BrandTone {
-  voice: 'professional' | 'casual' | 'friendly' | 'authoritative' | 'playful';
-  personality: string[];
-  doList: string[];
-  dontList: string[];
-  examplePhrases?: string[] | undefined;
+export interface VoiceStyle {
+  tone: string;
+  personality?: string[];
+  writingStyle?: string;
+  vocabulary?: {
+    preferred: string[];
+    avoided: string[];
+  };
+  examples?: Array<{
+    context: string;
+    example: string;
+  }>;
 }
 
 /**
- * Brand colors configuration
+ * Visual tokens configuration
  */
-export interface BrandColors {
-  primary: string;
-  secondary?: string | undefined;
-  accent?: string | undefined;
-  background?: string | undefined;
-  text?: string | undefined;
-  [key: string]: string | undefined;
+export interface VisualTokens {
+  colors: {
+    primary?: string;
+    secondary?: string;
+    accent?: string;
+    background?: string;
+    text?: string;
+    [key: string]: string | undefined;
+  };
+  typography?: {
+    headingFont?: string;
+    bodyFont?: string;
+    baseSize?: number;
+  };
+  logoUrls?: {
+    primary?: string;
+    icon?: string;
+    dark?: string;
+    light?: string;
+  };
+  spacing?: {
+    base?: number;
+    scale?: number;
+  };
 }
 
 /**
- * Logo reference
+ * Compliance rules configuration
  */
-export interface LogoRef {
-  type: 'primary' | 'secondary' | 'icon' | 'wordmark';
-  url: string;
-  format: 'png' | 'svg' | 'jpg';
-  dimensions?: { width: number; height: number } | undefined;
+export interface ComplianceRules {
+  industry?: string;
+  restrictions?: string[];
+  requiredDisclosures?: string[];
+  prohibitedTopics?: string[];
+  platformSpecific?: Record<string, {
+    restrictions?: string[];
+    requirements?: string[];
+  }>;
+}
+
+/**
+ * ICP (Ideal Customer Profile) configuration
+ */
+export interface ICP {
+  demographics?: {
+    ageRange?: { min?: number; max?: number };
+    gender?: string;
+    income?: string;
+    location?: string[];
+    education?: string;
+    occupation?: string[];
+  };
+  psychographics?: {
+    interests?: string[];
+    values?: string[];
+    painPoints?: string[];
+    goals?: string[];
+    fears?: string[];
+  };
+  behaviors?: {
+    platforms?: string[];
+    contentPreferences?: string[];
+    purchaseDrivers?: string[];
+    mediaConsumption?: string[];
+  };
 }
 
 /**
@@ -49,25 +103,14 @@ export const brandKits = pgTable('brand_kits', {
   ...idColumn,
   ...clientIdColumn,
 
-  // Basic info
-  name: varchar('name', { length: 255 }).notNull(),
-  description: varchar('description', { length: 1000 }),
+  // Brand elements as JSON
+  voiceStyle: jsonb('voice_style').$type<VoiceStyle>().notNull(),
+  visualTokens: jsonb('visual_tokens').$type<VisualTokens | null>(),
+  complianceRules: jsonb('compliance_rules').$type<ComplianceRules | null>(),
+  icp: jsonb('icp').$type<ICP | null>(),
 
-  // Brand elements
-  tone: jsonb('tone').$type<BrandTone>().notNull(),
-  colors: jsonb('colors').$type<BrandColors>().notNull(),
-  logoRefs: jsonb('logo_refs').$type<LogoRef[]>().default([]).notNull(),
-
-  // Typography (optional)
-  fonts: jsonb('fonts').$type<{
-    heading?: string | undefined;
-    body?: string | undefined;
-    accent?: string | undefined;
-  }>(),
-
-  // Status
-  isDefault: boolean('is_default').default(false).notNull(),
-  isActive: boolean('is_active').default(true).notNull(),
+  // Versioning
+  version: integer('version').default(1).notNull(),
 
   // Metadata
   ...timestamps,
@@ -79,9 +122,11 @@ export const brandKits = pgTable('brand_kits', {
     name: 'brand_kits_client_id_fk',
   }).onDelete('cascade'),
 
+  // Unique constraint: one brandkit per client
+  clientUnique: unique('brand_kits_client_id_unique').on(table.clientId),
+
   // Indexes
   clientIdx: index('brand_kits_client_id_idx').on(table.clientId),
-  defaultIdx: index('brand_kits_default_idx').on(table.clientId, table.isDefault),
 }));
 
 /**

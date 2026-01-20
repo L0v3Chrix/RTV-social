@@ -9,34 +9,26 @@
  */
 
 import type { ClientSettings } from '../schema/clients.js';
-import type { BrandTone, BrandColors, LogoRef } from '../schema/brand-kits.js';
-import type { KnowledgeSourceType } from '../schema/knowledge-bases.js';
+import type { VoiceStyle, VisualTokens, ComplianceRules, ICP } from '../schema/brand-kits.js';
+import type { FAQEntry, Resource, RetrievalConfig } from '../schema/knowledge-bases.js';
 
 /**
  * Seed client brand kit data
  */
 export interface SeedBrandKit {
-  name: string;
-  description?: string;
-  tone: BrandTone;
-  colors: BrandColors;
-  logoRefs: LogoRef[];
-  fonts?: {
-    heading?: string;
-    body?: string;
-    accent?: string;
-  };
-  isDefault?: boolean;
+  voiceStyle: VoiceStyle;
+  visualTokens?: VisualTokens | null;
+  complianceRules?: ComplianceRules | null;
+  icp?: ICP | null;
 }
 
 /**
- * Seed client knowledge base data
+ * Seed client knowledge base data (new RLM-based schema)
  */
 export interface SeedKnowledgeBase {
-  name: string;
-  description?: string;
-  sourceType: KnowledgeSourceType;
-  sourceRef?: string;
+  faqs: Omit<FAQEntry, 'id'>[];
+  resources: Omit<Resource, 'id'>[];
+  retrievalConfig?: Partial<RetrievalConfig>;
 }
 
 /**
@@ -47,7 +39,7 @@ export interface SeedClient {
   name: string;
   settings: ClientSettings;
   brandKit: SeedBrandKit;
-  knowledgeBases: SeedKnowledgeBase[];
+  knowledgeBase: SeedKnowledgeBase;
 }
 
 /**
@@ -80,75 +72,99 @@ export const SEED_CLIENTS: SeedClient[] = [
       },
     },
     brandKit: {
-      name: 'Raize The Vibe Brand Kit',
-      description: 'Primary brand identity for Raize The Vibe',
-      tone: {
-        voice: 'friendly',
+      voiceStyle: {
+        tone: 'friendly',
         personality: ['innovative', 'approachable', 'empowering', 'tech-savvy'],
-        doList: [
-          'Use conversational tone',
-          'Be encouraging and supportive',
-          'Share actionable insights',
-          'Reference AI and automation benefits',
-        ],
-        dontList: [
-          'Be overly technical without explanation',
-          'Use corporate jargon',
-          'Be condescending about technology',
-          'Promise unrealistic results',
-        ],
-        examplePhrases: [
-          "Let's vibe with your audience",
-          'Bridging tech and humanity',
-          'Your social presence, automated with soul',
+        writingStyle: 'conversational',
+        vocabulary: {
+          preferred: ['vibe', 'bridging tech and humanity', 'automation with soul'],
+          avoided: ['corporate jargon', 'overly technical', 'condescending'],
+        },
+        examples: [
+          { context: 'tagline', example: "Let's vibe with your audience" },
+          { context: 'mission', example: 'Bridging tech and humanity' },
+          { context: 'social', example: 'Your social presence, automated with soul' },
         ],
       },
-      colors: {
-        primary: '#6366F1',    // Indigo
-        secondary: '#EC4899',  // Pink
-        accent: '#10B981',     // Emerald
-        background: '#0F172A', // Slate 900
-        text: '#F8FAFC',       // Slate 50
+      visualTokens: {
+        colors: {
+          primary: '#6366F1',    // Indigo
+          secondary: '#EC4899',  // Pink
+          accent: '#10B981',     // Emerald
+          background: '#0F172A', // Slate 900
+          text: '#F8FAFC',       // Slate 50
+        },
+        typography: {
+          headingFont: 'Inter',
+          bodyFont: 'Inter',
+          baseSize: 16,
+        },
+        logoUrls: {
+          primary: 'https://assets.rtv.example/logo-primary.svg',
+          icon: 'https://assets.rtv.example/logo-icon.png',
+        },
       },
-      logoRefs: [
+      complianceRules: {
+        industry: 'technology',
+        restrictions: ['No spam messaging', 'Respect platform ToS'],
+        requiredDisclosures: ['AI-generated content disclosure when required'],
+      },
+      icp: {
+        demographics: {
+          ageRange: { min: 25, max: 55 },
+          income: 'middle-upper',
+          location: ['USA'],
+          occupation: ['small business owner', 'marketer', 'entrepreneur'],
+        },
+        psychographics: {
+          interests: ['marketing', 'automation', 'social media', 'AI'],
+          values: ['efficiency', 'authenticity', 'innovation'],
+          painPoints: ['time constraints', 'content creation fatigue', 'platform complexity'],
+        },
+        behaviors: {
+          platforms: ['LinkedIn', 'Instagram', 'TikTok'],
+          contentPreferences: ['video', 'short-form', 'educational'],
+          purchaseDrivers: ['time savings', 'ROI', 'ease of use'],
+        },
+      },
+    },
+    knowledgeBase: {
+      faqs: [
         {
-          type: 'primary',
-          url: 'https://assets.rtv.example/logo-primary.svg',
-          format: 'svg',
-          dimensions: { width: 200, height: 60 },
+          question: 'What services does Raize The Vibe offer?',
+          answer: 'We offer autonomous social media management, content creation, publishing, and engagement automation for small businesses.',
+          category: 'services',
+          tags: ['services', 'general'],
         },
         {
-          type: 'icon',
-          url: 'https://assets.rtv.example/logo-icon.png',
-          format: 'png',
-          dimensions: { width: 64, height: 64 },
+          question: 'How does the AI-powered automation work?',
+          answer: 'Our RLM (Recursive Language Model) system handles planning, creation, and engagement with human oversight at key approval points.',
+          category: 'technology',
+          tags: ['ai', 'automation'],
         },
       ],
-      fonts: {
-        heading: 'Inter',
-        body: 'Inter',
-        accent: 'Space Grotesk',
+      resources: [
+        {
+          title: 'Service Offerings',
+          url: 'https://docs.rtv.example/services',
+          type: 'link',
+          description: 'Core services and capabilities documentation',
+          tags: ['services', 'documentation'],
+        },
+        {
+          title: 'Social Media Best Practices',
+          url: 'https://docs.rtv.example/best-practices',
+          type: 'pdf',
+          description: 'Internal knowledge base for social media strategies',
+          tags: ['social-media', 'best-practices'],
+        },
+      ],
+      retrievalConfig: {
+        chunkSize: 4096,
+        maxResults: 10,
+        similarityThreshold: 0.6,
       },
-      isDefault: true,
     },
-    knowledgeBases: [
-      {
-        name: 'RTV Service Offerings',
-        description: 'Core services and capabilities documentation',
-        sourceType: 'document',
-        sourceRef: 'https://docs.rtv.example/services',
-      },
-      {
-        name: 'Social Media Best Practices',
-        description: 'Internal knowledge base for social media strategies',
-        sourceType: 'manual',
-      },
-      {
-        name: 'FAQ Database',
-        description: 'Frequently asked questions and answers',
-        sourceType: 'faq',
-      },
-    ],
   },
 
   // ============================================
@@ -172,63 +188,86 @@ export const SEED_CLIENTS: SeedClient[] = [
       },
     },
     brandKit: {
-      name: 'Acme Fitness Brand Kit',
-      description: 'Energetic fitness brand identity',
-      tone: {
-        voice: 'casual',
+      voiceStyle: {
+        tone: 'casual',
         personality: ['energetic', 'motivating', 'inclusive', 'fun'],
-        doList: [
-          'Use active, energetic language',
-          'Be encouraging and positive',
-          'Include fitness tips and motivation',
-          'Celebrate member achievements',
-        ],
-        dontList: [
-          'Be judgmental about fitness levels',
-          'Use body-shaming language',
-          'Make unrealistic promises',
-          'Be overly salesy',
-        ],
-        examplePhrases: [
-          'Every rep counts!',
-          "You've got this!",
-          'Stronger every day',
+        writingStyle: 'short-form',
+        vocabulary: {
+          preferred: ['every rep counts', "you've got this", 'stronger every day'],
+          avoided: ['body shaming', 'judgmental', 'overly salesy'],
+        },
+        examples: [
+          { context: 'motivation', example: 'Every rep counts!' },
+          { context: 'encouragement', example: "You've got this!" },
+          { context: 'progress', example: 'Stronger every day' },
         ],
       },
-      colors: {
-        primary: '#EF4444',    // Red
-        secondary: '#F97316',  // Orange
-        accent: '#FBBF24',     // Amber
-        background: '#FFFFFF', // White
-        text: '#1F2937',       // Gray 800
+      visualTokens: {
+        colors: {
+          primary: '#EF4444',    // Red
+          secondary: '#F97316',  // Orange
+          accent: '#FBBF24',     // Amber
+          background: '#FFFFFF', // White
+          text: '#1F2937',       // Gray 800
+        },
+        typography: {
+          headingFont: 'Bebas Neue',
+          bodyFont: 'Open Sans',
+          baseSize: 16,
+        },
+        logoUrls: {
+          primary: 'https://assets.acmefitness.example/logo.png',
+        },
       },
-      logoRefs: [
+      icp: {
+        demographics: {
+          ageRange: { min: 18, max: 45 },
+          gender: 'all',
+          location: ['Los Angeles, CA'],
+        },
+        psychographics: {
+          interests: ['fitness', 'health', 'wellness', 'community'],
+          values: ['health', 'community', 'self-improvement'],
+          painPoints: ['motivation', 'time management', 'accountability'],
+        },
+        behaviors: {
+          platforms: ['Instagram', 'TikTok'],
+          contentPreferences: ['video', 'reels', 'workout tips'],
+          purchaseDrivers: ['community', 'results', 'convenience'],
+        },
+      },
+    },
+    knowledgeBase: {
+      faqs: [
         {
-          type: 'primary',
-          url: 'https://assets.acmefitness.example/logo.png',
-          format: 'png',
-          dimensions: { width: 180, height: 50 },
+          question: 'What are your class times?',
+          answer: 'We offer classes from 6am-9pm daily. Check our online schedule for specific class types and times.',
+          category: 'schedule',
+          tags: ['classes', 'schedule'],
+        },
+        {
+          question: 'What membership options do you offer?',
+          answer: 'We offer monthly, quarterly, and annual memberships with options for unlimited classes or punch cards.',
+          category: 'membership',
+          tags: ['membership', 'pricing'],
+        },
+        {
+          question: 'Do you offer a free trial?',
+          answer: 'Yes! We offer a free week trial for new members to try any classes.',
+          category: 'membership',
+          tags: ['trial', 'new-members'],
         },
       ],
-      fonts: {
-        heading: 'Bebas Neue',
-        body: 'Open Sans',
-      },
-      isDefault: true,
+      resources: [
+        {
+          title: 'Class Schedule',
+          url: 'https://acmefitness.example/schedules',
+          type: 'link',
+          description: 'Weekly class schedules and instructor info',
+          tags: ['schedule', 'classes'],
+        },
+      ],
     },
-    knowledgeBases: [
-      {
-        name: 'Class Schedules',
-        description: 'Weekly class schedules and instructor info',
-        sourceType: 'document',
-        sourceRef: 'https://acmefitness.example/schedules',
-      },
-      {
-        name: 'Membership FAQ',
-        description: 'Common questions about memberships',
-        sourceType: 'faq',
-      },
-    ],
   },
 
   // ============================================
@@ -252,54 +291,91 @@ export const SEED_CLIENTS: SeedClient[] = [
       },
     },
     brandKit: {
-      name: 'Green Thumb Brand Kit',
-      description: 'Professional landscaping brand identity',
-      tone: {
-        voice: 'professional',
+      voiceStyle: {
+        tone: 'professional',
         personality: ['trustworthy', 'knowledgeable', 'reliable', 'local'],
-        doList: [
-          'Highlight expertise and experience',
-          'Mention seasonal tips',
-          'Share before/after project photos',
-          'Emphasize local community connection',
-        ],
-        dontList: [
-          'Be too casual',
-          'Criticize competitor work',
-          'Make claims without backing',
-          'Ignore safety considerations',
-        ],
-        examplePhrases: [
-          'Transforming outdoor spaces since 1998',
-          'Your neighbors trust us',
-          'Seasonal care for lasting beauty',
+        writingStyle: 'informative',
+        vocabulary: {
+          preferred: ['transforming outdoor spaces', 'your neighbors trust us', 'seasonal care'],
+          avoided: ['competitor criticism', 'unsubstantiated claims', 'too casual'],
+        },
+        examples: [
+          { context: 'heritage', example: 'Transforming outdoor spaces since 1998' },
+          { context: 'trust', example: 'Your neighbors trust us' },
+          { context: 'expertise', example: 'Seasonal care for lasting beauty' },
         ],
       },
-      colors: {
-        primary: '#16A34A',    // Green 600
-        secondary: '#854D0E',  // Yellow 800 (earth tone)
-        accent: '#0EA5E9',     // Sky 500
-        background: '#FAFAF9', // Stone 50
-        text: '#292524',       // Stone 800
+      visualTokens: {
+        colors: {
+          primary: '#16A34A',    // Green 600
+          secondary: '#854D0E',  // Yellow 800 (earth tone)
+          accent: '#0EA5E9',     // Sky 500
+          background: '#FAFAF9', // Stone 50
+          text: '#292524',       // Stone 800
+        },
+        typography: {
+          headingFont: 'Playfair Display',
+          bodyFont: 'Source Sans Pro',
+          baseSize: 16,
+        },
+        logoUrls: {
+          primary: 'https://assets.greenthumb.example/logo.png',
+        },
       },
-      logoRefs: [
+      complianceRules: {
+        industry: 'landscaping',
+        restrictions: ['Safety disclaimers for equipment', 'Licensed and insured mention'],
+        requiredDisclosures: ['Licensed and insured in Illinois'],
+      },
+      icp: {
+        demographics: {
+          ageRange: { min: 35, max: 65 },
+          income: 'middle-upper',
+          location: ['Chicago suburbs'],
+        },
+        psychographics: {
+          interests: ['home improvement', 'gardening', 'outdoor living'],
+          values: ['quality', 'reliability', 'local business'],
+          painPoints: ['time', 'expertise', 'seasonal maintenance'],
+        },
+        behaviors: {
+          platforms: ['Facebook', 'Google Business'],
+          contentPreferences: ['before/after photos', 'tips', 'seasonal guides'],
+          purchaseDrivers: ['reputation', 'local presence', 'quality work'],
+        },
+      },
+    },
+    knowledgeBase: {
+      faqs: [
         {
-          type: 'primary',
-          url: 'https://assets.greenthumb.example/logo.png',
-          format: 'png',
-          dimensions: { width: 200, height: 70 },
+          question: 'What landscaping services do you offer?',
+          answer: 'We provide full-service landscaping including design, installation, maintenance, seasonal cleanup, and irrigation services.',
+          category: 'services',
+          tags: ['services', 'landscaping'],
+        },
+        {
+          question: 'Do you offer free estimates?',
+          answer: 'Yes, we provide free on-site consultations and estimates for all landscaping projects.',
+          category: 'pricing',
+          tags: ['estimates', 'pricing'],
+        },
+        {
+          question: 'Are you licensed and insured?',
+          answer: 'Yes, Green Thumb Landscaping is fully licensed and insured in Illinois.',
+          category: 'company',
+          tags: ['licensing', 'insurance'],
         },
       ],
-      isDefault: true,
+      resources: [
+        {
+          title: 'Service Catalog',
+          url: 'https://greenthumb.example/services',
+          type: 'pdf',
+          description: 'Complete list of landscaping services',
+          tags: ['services', 'catalog'],
+        },
+      ],
     },
-    knowledgeBases: [
-      {
-        name: 'Service Catalog',
-        description: 'Complete list of landscaping services',
-        sourceType: 'product',
-        sourceRef: 'https://greenthumb.example/services',
-      },
-    ],
   },
 ];
 

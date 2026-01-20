@@ -71,35 +71,44 @@ async function seedClient(
     const clientId = newClient.id;
     result.created.clients++;
 
-    // Insert brand kit
+    // Insert brand kit with new schema
     await db.insert(brandKits).values({
       clientId,
-      name: seedData.brandKit.name,
-      description: seedData.brandKit.description,
-      tone: seedData.brandKit.tone,
-      colors: seedData.brandKit.colors,
-      logoRefs: seedData.brandKit.logoRefs,
-      fonts: seedData.brandKit.fonts,
-      isDefault: seedData.brandKit.isDefault ?? false,
-      isActive: true,
+      voiceStyle: seedData.brandKit.voiceStyle,
+      visualTokens: seedData.brandKit.visualTokens ?? null,
+      complianceRules: seedData.brandKit.complianceRules ?? null,
+      icp: seedData.brandKit.icp ?? null,
+      version: 1,
     });
     result.created.brandKits++;
 
-    // Insert knowledge bases
-    for (const kb of seedData.knowledgeBases) {
-      await db.insert(knowledgeBases).values({
-        clientId,
-        name: kb.name,
-        description: kb.description,
-        sourceType: kb.sourceType,
-        sourceRef: kb.sourceRef,
-        isActive: true,
-        isProcessed: false,
-        chunkCount: 0,
-        tokenCount: 0,
-      });
-      result.created.knowledgeBases++;
-    }
+    // Insert knowledge base (one per client, new RLM schema)
+    const { nanoid } = await import('nanoid');
+    const faqs = seedData.knowledgeBase.faqs.map(faq => ({
+      ...faq,
+      id: nanoid(),
+    }));
+    const resources = seedData.knowledgeBase.resources.map(resource => ({
+      ...resource,
+      id: nanoid(),
+    }));
+
+    await db.insert(knowledgeBases).values({
+      clientId,
+      faqs,
+      resources,
+      sourceDocuments: [],
+      retrievalConfig: {
+        chunkSize: seedData.knowledgeBase.retrievalConfig?.chunkSize ?? 4096,
+        chunkOverlap: seedData.knowledgeBase.retrievalConfig?.chunkOverlap ?? 256,
+        maxResults: seedData.knowledgeBase.retrievalConfig?.maxResults ?? 10,
+        similarityThreshold: seedData.knowledgeBase.retrievalConfig?.similarityThreshold ?? 0.5,
+        reranking: seedData.knowledgeBase.retrievalConfig?.reranking ?? false,
+        maxTokensPerRetrieval: seedData.knowledgeBase.retrievalConfig?.maxTokensPerRetrieval ?? 4000,
+      },
+      version: 1,
+    });
+    result.created.knowledgeBases++;
 
     console.log(`  Created client: ${seedData.slug}`);
     return clientId;

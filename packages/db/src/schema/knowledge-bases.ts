@@ -1,11 +1,14 @@
 /**
  * Knowledge Bases table schema
  *
- * Stores chunked content with embeddings for RAG-based retrieval.
- * Used by AI agents to access client-specific knowledge.
+ * Stores structured FAQs, resources, source documents with span-indexed content.
+ * Implements RLM external memory patterns for efficient retrieval without context overflow.
+ *
+ * Per RLM spec: "External memory is the canonical source (DB/files), not the prompt.
+ * LLM only sees slices (retrieved evidence) at any time."
  */
 
-import { pgTable, varchar, text, jsonb, boolean, integer, index, foreignKey, uuid } from 'drizzle-orm/pg-core';
+import { pgTable, varchar, text, jsonb, boolean, integer, index, foreignKey, uuid, unique } from 'drizzle-orm/pg-core';
 import { idColumn, timestamps, clientIdColumn } from './base.js';
 import { clients } from './clients.js';
 
@@ -21,7 +24,7 @@ export type KnowledgeSourceType =
   | 'transcript'; // Video/audio transcripts
 
 /**
- * Chunk metadata
+ * Chunk metadata (for legacy knowledgeChunks table)
  */
 export interface ChunkMetadata {
   sourceUrl?: string | undefined;
@@ -31,27 +34,87 @@ export interface ChunkMetadata {
 }
 
 /**
+ * Span - indexed slice of content for RLM retrieval
+ * Per RLM spec: "chunk into spans (4-16KB), write span index (span_id, start_byte, end_byte, hash)"
+ */
+export interface Span {
+  id: string;
+  startByte: number;
+  endByte: number;
+  hash: string;
+  tokenCount?: number;
+}
+
+/**
+ * Source document with span indexing
+ */
+export interface SourceDocument {
+  id: string;
+  title: string;
+  type: 'document' | 'webpage' | 'transcript' | 'notes' | 'other';
+  sourceUrl?: string;
+  content: string;
+  contentHash: string;
+  summary?: string;
+  spans: Span[];
+  metadata?: Record<string, unknown>;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/**
+ * FAQ entry
+ */
+export interface FAQEntry {
+  id: string;
+  question: string;
+  answer: string;
+  category?: string;
+  tags?: string[];
+  metadata?: Record<string, unknown>;
+}
+
+/**
+ * Resource link
+ */
+export interface Resource {
+  id: string;
+  title: string;
+  url: string;
+  type: 'link' | 'video' | 'pdf' | 'image' | 'other';
+  description?: string;
+  tags?: string[];
+}
+
+/**
+ * Retrieval configuration
+ */
+export interface RetrievalConfig {
+  chunkSize: number;      // bytes (256-16384)
+  chunkOverlap: number;   // bytes (0-2048)
+  maxResults: number;     // (1-100)
+  similarityThreshold: number; // (0-1)
+  reranking: boolean;
+  maxTokensPerRetrieval: number;
+}
+
+/**
  * Knowledge Bases table
  */
 export const knowledgeBases = pgTable('knowledge_bases', {
   ...idColumn,
   ...clientIdColumn,
 
-  // Basic info
-  name: varchar('name', { length: 255 }).notNull(),
-  description: varchar('description', { length: 1000 }),
-  sourceType: varchar('source_type', { length: 50 }).$type<KnowledgeSourceType>().notNull(),
+  // RLM External Memory - structured content
+  faqs: jsonb('faqs').$type<FAQEntry[]>().default([]).notNull(),
+  resources: jsonb('resources').$type<Resource[]>().default([]).notNull(),
+  sourceDocuments: jsonb('source_documents').$type<SourceDocument[]>().default([]).notNull(),
 
-  // Source reference
-  sourceRef: varchar('source_ref', { length: 500 }), // URL, file path, etc.
+  // Retrieval configuration
+  retrievalConfig: jsonb('retrieval_config').$type<RetrievalConfig>(),
 
-  // Status
-  isActive: boolean('is_active').default(true).notNull(),
-  isProcessed: boolean('is_processed').default(false).notNull(),
-
-  // Statistics
-  chunkCount: integer('chunk_count').default(0).notNull(),
-  tokenCount: integer('token_count').default(0).notNull(),
+  // Version tracking
+  version: integer('version').default(1).notNull(),
 
   // Metadata
   ...timestamps,
@@ -63,9 +126,11 @@ export const knowledgeBases = pgTable('knowledge_bases', {
     name: 'knowledge_bases_client_id_fk',
   }).onDelete('cascade'),
 
+  // One knowledgebase per client
+  clientUnique: unique('knowledge_bases_client_id_unique').on(table.clientId),
+
   // Indexes
   clientIdx: index('knowledge_bases_client_id_idx').on(table.clientId),
-  sourceTypeIdx: index('knowledge_bases_source_type_idx').on(table.sourceType),
 }));
 
 /**
@@ -112,7 +177,7 @@ export type NewKnowledgeBase = typeof knowledgeBases.$inferInsert;
 /**
  * Knowledge Base select type
  */
-export type KnowledgeBase = typeof knowledgeBases.$inferSelect;
+export type KnowledgeBaseRow = typeof knowledgeBases.$inferSelect;
 
 /**
  * Knowledge Chunk insert type

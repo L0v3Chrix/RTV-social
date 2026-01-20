@@ -25,9 +25,34 @@ import { Sprint, SPRINT_NAMES, AGENT_TRACKS } from './types.js';
 
 const program = new Command();
 
-// Detect project root
-const PROJECT_ROOT = process.env.RTV_PROJECT_ROOT || 
-  path.resolve(process.cwd(), '..', '..');
+// Detect project root - check if running from project root or from tools/orchestrator
+function findProjectRoot(): string {
+  if (process.env.RTV_PROJECT_ROOT) {
+    return process.env.RTV_PROJECT_ROOT;
+  }
+
+  const cwd = process.cwd();
+
+  // Check if we're in the project root (has pnpm-workspace.yaml)
+  const workspaceYaml = path.join(cwd, 'pnpm-workspace.yaml');
+  try {
+    require('fs').accessSync(workspaceYaml);
+    return cwd;
+  } catch {
+    // Check if we're in tools/orchestrator
+    const parentParent = path.resolve(cwd, '..', '..');
+    const parentWorkspaceYaml = path.join(parentParent, 'pnpm-workspace.yaml');
+    try {
+      require('fs').accessSync(parentWorkspaceYaml);
+      return parentParent;
+    } catch {
+      // Default to cwd
+      return cwd;
+    }
+  }
+}
+
+const PROJECT_ROOT = findProjectRoot();
 
 let orchestrator: Orchestrator;
 

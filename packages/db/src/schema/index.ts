@@ -17,12 +17,14 @@ export * from './base.js';
 export * from './clients.js';
 export * from './brand-kits.js';
 export * from './knowledge-bases.js';
+export * from './offers.js';
 export * from './audit-events.js';
 
 // Table references for Drizzle queries
 import { clients } from './clients.js';
 import { brandKits } from './brand-kits.js';
 import { knowledgeBases, knowledgeChunks } from './knowledge-bases.js';
+import { offers } from './offers.js';
 import { auditEvents } from './audit-events.js';
 
 export const schema = {
@@ -30,5 +32,6 @@ export const schema = {
   brandKits,
   knowledgeBases,
   knowledgeChunks,
+  offers,
   auditEvents,
 };

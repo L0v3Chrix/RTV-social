@@ -140,6 +140,56 @@ importers:
         specifier: ^2.1.0
         version: 2.1.9(@types/node@20.19.30)
 
+  packages/domain:
+    dependencies:
+      '@rtv/db':
+        specifier: workspace:*
+        version: link:../db
+      '@rtv/observability':
+        specifier: workspace:*
+        version: link:../observability
+      '@rtv/types':
+        specifier: workspace:*
+        version: link:../types
+      nanoid:
+        specifier: ^5.0.0
+        version: 5.1.6
+      slugify:
+        specifier: ^1.6.6
+        version: 1.6.6
+      zod:
+        specifier: ^3.22.0
+        version: 3.25.76
+    devDependencies:
+      '@types/node':
+        specifier: ^20.11.0
+        version: 20.19.30
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@20.19.30)
+
+  packages/memory:
+    dependencies:
+      nanoid:
+        specifier: ^5.0.0
+        version: 5.1.6
+      zod:
+        specifier: ^3.22.0
+        version: 3.25.76
+    devDependencies:
+      '@types/node':
+        specifier: ^20.11.0
+        version: 20.19.30
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@20.19.30)
+
   packages/observability:
     dependencies:
       '@opentelemetry/api':
@@ -184,6 +234,25 @@ importers:
       pino-pretty:
         specifier: ^13.1.3
         version: 13.1.3
+    devDependencies:
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@20.19.30)
+
+  packages/policy:
+    dependencies:
+      date-fns:
+        specifier: ^3.0.0
+        version: 3.6.0
+      nanoid:
+        specifier: ^5.0.0
+        version: 5.1.6
+      zod:
+        specifier: ^3.22.0
+        version: 3.25.76
     devDependencies:
       typescript:
         specifier: ^5.3.3
@@ -3358,6 +3427,10 @@ packages:
       which: 2.0.2
     dev: true
 
+  /date-fns@3.6.0:
+    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
+    dev: false
+
   /dateformat@4.6.3:
     resolution: {integrity: sha512-2P0p0pFGzHS5EMnhdxQi7aJN+iMheud0UhG4dlE1DLAlvL8JHjJJTX/CSm4JXwV0Ka5nGk3zC5mcb5bUQUxxMA==}
     dev: false
@@ -4236,6 +4309,12 @@ packages:
     hasBin: true
     dev: true
 
+  /nanoid@5.1.6:
+    resolution: {integrity: sha512-c7+7RQ+dMB5dPwwCp4ee1/iV/q2P6aK1mTZcfr1BTuVlyW9hJYiMPybJCcnBlQtuSmTIWNeazm/zqNoZSSElBg==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+    dev: false
+
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
@@ -4688,6 +4767,11 @@ packages:
   /signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
+    dev: false
+
+  /slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
     dev: false
 
   /sonic-boom@4.2.0:
@@ -5201,6 +5285,10 @@ packages:
   /yoctocolors-cjs@2.1.3:
     resolution: {integrity: sha512-U/PBtDf35ff0D8X8D0jfdzHYEPFxAI7jJlxZXwCSez5M3190m+QobIfh+sWDWSHMCWWJN2AWamkegn6vr6YBTw==}
     engines: {node: '>=18'}
+    dev: false
+
+  /zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
     dev: false
 
   /zod@4.3.5:
