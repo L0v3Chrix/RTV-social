@@ -64,7 +64,7 @@ jobs:
           echo "Preview URL: $DEPLOYMENT_URL"
 
       - name: Comment Preview URL on PR
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const deploymentUrl = '${{ steps.deploy.outputs.url }}';
@@ -114,7 +114,7 @@ jobs:
             }
 
       - name: Create Deployment Status
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             await github.rest.repos.createDeploymentStatus({
