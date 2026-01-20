@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "types": ["node"],
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "exactOptionalPropertyTypes": true,
+    "baseUrl": ".",
+    "paths": {
+      "@rtv/*": ["packages/*/src"],
+      "@rtv/core": ["packages/core/src"],
+      "@rtv/core/*": ["packages/core/src/*"],
+      "@rtv/db": ["packages/db/src"],
+      "@rtv/db/*": ["packages/db/src/*"],
+      "@rtv/api-client": ["packages/api-client/src"],
+      "@rtv/api-client/*": ["packages/api-client/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", ".turbo"]
+}

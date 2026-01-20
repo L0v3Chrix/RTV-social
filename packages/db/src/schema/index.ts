@@ -1,0 +1,34 @@
+/**
+ * @rtv/db Schema Exports
+ *
+ * Central export point for all database schemas.
+ * Schemas are organized by domain and follow multi-tenant patterns.
+ *
+ * All tables include:
+ * - client_id: Tenant isolation
+ * - created_at: Record creation timestamp
+ * - updated_at: Record modification timestamp
+ */
+
+// Base schema types and utilities
+export * from './base.js';
+
+// Core tables
+export * from './clients.js';
+export * from './brand-kits.js';
+export * from './knowledge-bases.js';
+export * from './audit-events.js';
+
+// Table references for Drizzle queries
+import { clients } from './clients.js';
+import { brandKits } from './brand-kits.js';
+import { knowledgeBases, knowledgeChunks } from './knowledge-bases.js';
+import { auditEvents } from './audit-events.js';
+
+export const schema = {
+  clients,
+  brandKits,
+  knowledgeBases,
+  knowledgeChunks,
+  auditEvents,
+};
