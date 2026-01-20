@@ -20,6 +20,8 @@ export * from './knowledge-bases.js';
 export * from './offers.js';
 export * from './audit-events.js';
 export * from './episodes.js';
+export * from './memory-priority.js';
+export * from './checkpoints.js';
 
 // Table references for Drizzle queries
 import { clients } from './clients.js';
@@ -28,6 +30,8 @@ import { knowledgeBases, knowledgeChunks } from './knowledge-bases.js';
 import { offers } from './offers.js';
 import { auditEvents } from './audit-events.js';
 import { episodes, episodeTransitions } from './episodes.js';
+import { memoryEntries, memoryAccessLog, pinnedBudgetUsage } from './memory-priority.js';
+import { checkpoints } from './checkpoints.js';
 
 export const schema = {
   clients,
@@ -38,4 +42,8 @@ export const schema = {
   auditEvents,
   episodes,
   episodeTransitions,
+  memoryEntries,
+  memoryAccessLog,
+  pinnedBudgetUsage,
+  checkpoints,
 };

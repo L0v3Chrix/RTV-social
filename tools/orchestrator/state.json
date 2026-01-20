@@ -988,8 +988,8 @@
       "name": "Budget Enforcement",
       "sprint": 1,
       "agent": "D",
-      "status": "ready",
-      "testStatus": "not_written",
+      "status": "complete",
+      "testStatus": "passing",
       "complexity": "medium",
       "estimatedHours": 4,
       "dependencies": [
@@ -1003,15 +1003,19 @@
       ],
       "acceptanceCriteria": [],
       "specReferences": [],
-      "promptFile": "sprint-1/S1-D2-budget-enforcement.md"
+      "promptFile": "sprint-1/S1-D2-budget-enforcement.md",
+      "assignedTo": "agent-D-mkn47gch",
+      "startedAt": "2026-01-20T21:37:25.121Z",
+      "completedAt": "2026-01-20T21:47:29.332Z",
+      "actualHours": 0.16783638888888888
     },
     "S1-D3": {
       "id": "S1-D3",
       "name": "Tool Execution Wrapper",
       "sprint": 1,
       "agent": "D",
-      "status": "ready",
-      "testStatus": "not_written",
+      "status": "complete",
+      "testStatus": "passing",
       "complexity": "high",
       "estimatedHours": 6,
       "dependencies": [
@@ -1026,15 +1030,19 @@
       ],
       "acceptanceCriteria": [],
       "specReferences": [],
-      "promptFile": "sprint-1/S1-D3-tool-wrapper.md"
+      "promptFile": "sprint-1/S1-D3-tool-wrapper.md",
+      "assignedTo": "agent-D-mkn4kqpi",
+      "startedAt": "2026-01-20T21:47:45.078Z",
+      "completedAt": "2026-01-20T21:55:30.072Z",
+      "actualHours": 0.129165
     },
     "S1-D4": {
       "id": "S1-D4",
       "name": "Runner State Machine",
       "sprint": 1,
       "agent": "D",
-      "status": "ready",
-      "testStatus": "not_written",
+      "status": "complete",
+      "testStatus": "passing",
       "complexity": "high",
       "estimatedHours": 5,
       "dependencies": [
@@ -1047,15 +1055,19 @@
       ],
       "acceptanceCriteria": [],
       "specReferences": [],
-      "promptFile": "sprint-1/S1-D4-runner-state-machine.md"
+      "promptFile": "sprint-1/S1-D4-runner-state-machine.md",
+      "assignedTo": "agent-D-mkn4v04f",
+      "startedAt": "2026-01-20T21:55:43.839Z",
+      "completedAt": "2026-01-20T22:06:41.477Z",
+      "actualHours": 0.1826772222222222
     },
     "S1-D5": {
       "id": "S1-D5",
       "name": "Checkpoint & Resume System",
       "sprint": 1,
       "agent": "D",
-      "status": "ready",
-      "testStatus": "not_written",
+      "status": "complete",
+      "testStatus": "passing",
       "complexity": "high",
       "estimatedHours": 5,
       "dependencies": [
@@ -1069,7 +1081,11 @@
       ],
       "acceptanceCriteria": [],
       "specReferences": [],
-      "promptFile": "sprint-1/S1-D5-checkpoint-resume.md"
+      "promptFile": "sprint-1/S1-D5-checkpoint-resume.md",
+      "assignedTo": "agent-D-mkn59773",
+      "startedAt": "2026-01-20T22:06:46.191Z",
+      "completedAt": "2026-01-20T22:15:18.684Z",
+      "actualHours": 0.14235916666666668
     },
     "S2-A1": {
       "id": "S2-A1",
@@ -1296,7 +1312,7 @@
       "name": "Copy Agent Prompt System",
       "sprint": 2,
       "agent": "C",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "high",
       "estimatedHours": 6,
@@ -1411,7 +1427,7 @@
       "name": "Image Prompt Generation",
       "sprint": 2,
       "agent": "D",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 4,
@@ -2880,8 +2896,8 @@
       "name": "Memory Priority Schema",
       "sprint": 1,
       "agent": "B",
-      "status": "ready",
-      "testStatus": "not_written",
+      "status": "complete",
+      "testStatus": "passing",
       "complexity": "medium",
       "estimatedHours": 3,
       "dependencies": [
@@ -2899,15 +2915,19 @@
       ],
       "acceptanceCriteria": [],
       "specReferences": [],
-      "promptFile": "sprint-1/S1-B6-memory-priority-schema.md"
+      "promptFile": "sprint-1/S1-B6-memory-priority-schema.md",
+      "assignedTo": "agent-B-mkn0uryw",
+      "startedAt": "2026-01-20T20:03:34.808Z",
+      "completedAt": "2026-01-20T20:09:55.958Z",
+      "actualHours": 0.105875
     },
     "S1-B7": {
       "id": "S1-B7",
       "name": "Priority-Based Eviction Engine",
       "sprint": 1,
       "agent": "B",
-      "status": "pending",
-      "testStatus": "not_written",
+      "status": "complete",
+      "testStatus": "passing",
       "complexity": "high",
       "estimatedHours": 4,
       "dependencies": [
@@ -2924,15 +2944,19 @@
       ],
       "acceptanceCriteria": [],
       "specReferences": [],
-      "promptFile": "sprint-1/S1-B7-priority-based-eviction.md"
+      "promptFile": "sprint-1/S1-B7-priority-based-eviction.md",
+      "assignedTo": "agent-B-mkn138do",
+      "startedAt": "2026-01-20T20:10:09.324Z",
+      "completedAt": "2026-01-20T21:31:27.653Z",
+      "actualHours": 1.355091388888889
     },
     "S1-B8": {
       "id": "S1-B8",
       "name": "Pinned Context Manager",
       "sprint": 1,
       "agent": "B",
-      "status": "pending",
-      "testStatus": "not_written",
+      "status": "complete",
+      "testStatus": "passing",
       "complexity": "medium",
       "estimatedHours": 3,
       "dependencies": [
@@ -2950,7 +2974,11 @@
       ],
       "acceptanceCriteria": [],
       "specReferences": [],
-      "promptFile": "sprint-1/S1-B8-pinned-context-manager.md"
+      "promptFile": "sprint-1/S1-B8-pinned-context-manager.md",
+      "assignedTo": "agent-B-mkn402hq",
+      "startedAt": "2026-01-20T21:31:40.574Z",
+      "completedAt": "2026-01-20T21:37:09.616Z",
+      "actualHours": 0.09140055555555555
     },
     "S2-A6": {
       "id": "S2-A6",
@@ -3387,6 +3415,69 @@
       ],
       "startedAt": "2026-01-20T19:19:27.136Z",
       "lastActivityAt": "2026-01-20T19:28:10.203Z"
+    },
+    "agent-B-mkn0uryw": {
+      "agentId": "agent-B-mkn0uryw",
+      "agentType": "B",
+      "completedTasks": [
+        "S1-B6"
+      ],
+      "startedAt": "2026-01-20T20:03:34.808Z",
+      "lastActivityAt": "2026-01-20T20:09:55.958Z"
+    },
+    "agent-B-mkn138do": {
+      "agentId": "agent-B-mkn138do",
+      "agentType": "B",
+      "completedTasks": [
+        "S1-B7"
+      ],
+      "startedAt": "2026-01-20T20:10:09.324Z",
+      "lastActivityAt": "2026-01-20T21:31:27.653Z"
+    },
+    "agent-B-mkn402hq": {
+      "agentId": "agent-B-mkn402hq",
+      "agentType": "B",
+      "completedTasks": [
+        "S1-B8"
+      ],
+      "startedAt": "2026-01-20T21:31:40.574Z",
+      "lastActivityAt": "2026-01-20T21:37:09.616Z"
+    },
+    "agent-D-mkn47gch": {
+      "agentId": "agent-D-mkn47gch",
+      "agentType": "D",
+      "completedTasks": [
+        "S1-D2"
+      ],
+      "startedAt": "2026-01-20T21:37:25.121Z",
+      "lastActivityAt": "2026-01-20T21:47:29.332Z"
+    },
+    "agent-D-mkn4kqpi": {
+      "agentId": "agent-D-mkn4kqpi",
+      "agentType": "D",
+      "completedTasks": [
+        "S1-D3"
+      ],
+      "startedAt": "2026-01-20T21:47:45.078Z",
+      "lastActivityAt": "2026-01-20T21:55:30.072Z"
+    },
+    "agent-D-mkn4v04f": {
+      "agentId": "agent-D-mkn4v04f",
+      "agentType": "D",
+      "completedTasks": [
+        "S1-D4"
+      ],
+      "startedAt": "2026-01-20T21:55:43.839Z",
+      "lastActivityAt": "2026-01-20T22:06:41.477Z"
+    },
+    "agent-D-mkn59773": {
+      "agentId": "agent-D-mkn59773",
+      "agentType": "D",
+      "completedTasks": [
+        "S1-D5"
+      ],
+      "startedAt": "2026-01-20T22:06:46.191Z",
+      "lastActivityAt": "2026-01-20T22:15:18.684Z"
     }
   },
   "history": [
@@ -3778,7 +3869,91 @@
       "action": "complete",
       "taskId": "S1-D1",
       "agentId": "agent-D-mkmza10g"
+    },
+    {
+      "timestamp": "2026-01-20T20:03:34.808Z",
+      "action": "dispatch",
+      "taskId": "S1-B6",
+      "agentId": "agent-B-mkn0uryw"
+    },
+    {
+      "timestamp": "2026-01-20T20:09:55.958Z",
+      "action": "complete",
+      "taskId": "S1-B6",
+      "agentId": "agent-B-mkn0uryw"
+    },
+    {
+      "timestamp": "2026-01-20T20:10:09.324Z",
+      "action": "dispatch",
+      "taskId": "S1-B7",
+      "agentId": "agent-B-mkn138do"
+    },
+    {
+      "timestamp": "2026-01-20T21:31:27.653Z",
+      "action": "complete",
+      "taskId": "S1-B7",
+      "agentId": "agent-B-mkn138do"
+    },
+    {
+      "timestamp": "2026-01-20T21:31:40.574Z",
+      "action": "dispatch",
+      "taskId": "S1-B8",
+      "agentId": "agent-B-mkn402hq"
+    },
+    {
+      "timestamp": "2026-01-20T21:37:09.616Z",
+      "action": "complete",
+      "taskId": "S1-B8",
+      "agentId": "agent-B-mkn402hq"
+    },
+    {
+      "timestamp": "2026-01-20T21:37:25.121Z",
+      "action": "dispatch",
+      "taskId": "S1-D2",
+      "agentId": "agent-D-mkn47gch"
+    },
+    {
+      "timestamp": "2026-01-20T21:47:29.332Z",
+      "action": "complete",
+      "taskId": "S1-D2",
+      "agentId": "agent-D-mkn47gch"
+    },
+    {
+      "timestamp": "2026-01-20T21:47:45.078Z",
+      "action": "dispatch",
+      "taskId": "S1-D3",
+      "agentId": "agent-D-mkn4kqpi"
+    },
+    {
+      "timestamp": "2026-01-20T21:55:30.072Z",
+      "action": "complete",
+      "taskId": "S1-D3",
+      "agentId": "agent-D-mkn4kqpi"
+    },
+    {
+      "timestamp": "2026-01-20T21:55:43.839Z",
+      "action": "dispatch",
+      "taskId": "S1-D4",
+      "agentId": "agent-D-mkn4v04f"
+    },
+    {
+      "timestamp": "2026-01-20T22:06:41.477Z",
+      "action": "complete",
+      "taskId": "S1-D4",
+      "agentId": "agent-D-mkn4v04f"
+    },
+    {
+      "timestamp": "2026-01-20T22:06:46.191Z",
+      "action": "dispatch",
+      "taskId": "S1-D5",
+      "agentId": "agent-D-mkn59773"
+    },
+    {
+      "timestamp": "2026-01-20T22:15:18.684Z",
+      "action": "complete",
+      "taskId": "S1-D5",
+      "agentId": "agent-D-mkn59773"
     }
   ],
-  "lastUpdated": "2026-01-20T19:28:10.203Z"
+  "lastUpdated": "2026-01-20T22:15:18.684Z"
 }

@@ -9,6 +9,7 @@ export * from './constants.js';
 export * from './errors.js';
 export * from './config.js';
 export * from './env.js';
+export * from './memory/index.js';
 
 // Re-export types and utils for convenience
 export * from '@rtv/types';
