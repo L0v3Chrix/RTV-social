@@ -1092,8 +1092,8 @@
       "name": "PlanGraph Model",
       "sprint": 2,
       "agent": "A",
-      "status": "ready",
-      "testStatus": "not_written",
+      "status": "complete",
+      "testStatus": "passing",
       "complexity": "high",
       "estimatedHours": 5,
       "dependencies": [
@@ -1111,14 +1111,18 @@
       ],
       "acceptanceCriteria": [],
       "specReferences": [],
-      "promptFile": "sprint-2/S2-A1-plangraph-model.md"
+      "promptFile": "sprint-2/S2-A1-plangraph-model.md",
+      "assignedTo": "agent-A-mkn66tfa",
+      "startedAt": "2026-01-20T22:32:54.646Z",
+      "completedAt": "2026-01-20T22:39:38.638Z",
+      "actualHours": 0.11222
     },
     "S2-A2": {
       "id": "S2-A2",
       "name": "Plan Node Types",
       "sprint": 2,
       "agent": "A",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 4,
@@ -1139,7 +1143,7 @@
       "name": "Plan API Endpoints",
       "sprint": 2,
       "agent": "A",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 4,
@@ -1160,7 +1164,7 @@
       "name": "Plan Versioning",
       "sprint": 2,
       "agent": "A",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 3,
@@ -1181,7 +1185,7 @@
       "name": "Plan Visualization",
       "sprint": 2,
       "agent": "A",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 4,
@@ -1202,8 +1206,8 @@
       "name": "Blueprint Schema",
       "sprint": 2,
       "agent": "B",
-      "status": "ready",
-      "testStatus": "not_written",
+      "status": "complete",
+      "testStatus": "passing",
       "complexity": "high",
       "estimatedHours": 5,
       "dependencies": [
@@ -1221,14 +1225,18 @@
       ],
       "acceptanceCriteria": [],
       "specReferences": [],
-      "promptFile": "sprint-2/S2-B1-blueprint-schema.md"
+      "promptFile": "sprint-2/S2-B1-blueprint-schema.md",
+      "assignedTo": "agent-B-mkn6flsl",
+      "startedAt": "2026-01-20T22:39:44.661Z",
+      "completedAt": "2026-01-20T22:42:25.008Z",
+      "actualHours": 0.044540833333333335
     },
     "S2-B2": {
       "id": "S2-B2",
       "name": "Blueprint Versioning",
       "sprint": 2,
       "agent": "B",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 3,
@@ -1249,7 +1257,7 @@
       "name": "Blueprint Registry",
       "sprint": 2,
       "agent": "B",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 4,
@@ -1270,7 +1278,7 @@
       "name": "MVP Blueprints 1-6",
       "sprint": 2,
       "agent": "B",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "high",
       "estimatedHours": 8,
@@ -1291,7 +1299,7 @@
       "name": "MVP Blueprints 7-12",
       "sprint": 2,
       "agent": "B",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "high",
       "estimatedHours": 8,
@@ -1312,8 +1320,8 @@
       "name": "Copy Agent Prompt System",
       "sprint": 2,
       "agent": "C",
-      "status": "ready",
-      "testStatus": "not_written",
+      "status": "complete",
+      "testStatus": "passing",
       "complexity": "high",
       "estimatedHours": 6,
       "dependencies": [
@@ -1332,14 +1340,18 @@
       ],
       "acceptanceCriteria": [],
       "specReferences": [],
-      "promptFile": "sprint-2/S2-C1-copy-prompts.md"
+      "promptFile": "sprint-2/S2-C1-copy-prompts.md",
+      "assignedTo": "agent-C-mkn6jeqz",
+      "startedAt": "2026-01-20T22:42:42.155Z",
+      "completedAt": "2026-01-20T22:47:43.762Z",
+      "actualHours": 0.08377972222222223
     },
     "S2-C2": {
       "id": "S2-C2",
       "name": "Caption Generation",
       "sprint": 2,
       "agent": "C",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 4,
@@ -1361,7 +1373,7 @@
       "name": "CTA Generation",
       "sprint": 2,
       "agent": "C",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 3,
@@ -1383,7 +1395,7 @@
       "name": "Hook Generation",
       "sprint": 2,
       "agent": "C",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 4,
@@ -1405,7 +1417,7 @@
       "name": "Copy QA Scoring",
       "sprint": 2,
       "agent": "C",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "high",
       "estimatedHours": 5,
@@ -1427,8 +1439,8 @@
       "name": "Image Prompt Generation",
       "sprint": 2,
       "agent": "D",
-      "status": "ready",
-      "testStatus": "not_written",
+      "status": "complete",
+      "testStatus": "passing",
       "complexity": "medium",
       "estimatedHours": 4,
       "dependencies": [
@@ -1447,14 +1459,18 @@
       ],
       "acceptanceCriteria": [],
       "specReferences": [],
-      "promptFile": "sprint-2/S2-D1-image-prompts.md"
+      "promptFile": "sprint-2/S2-D1-image-prompts.md",
+      "assignedTo": "agent-D-mkn6q5d6",
+      "startedAt": "2026-01-20T22:47:56.586Z",
+      "completedAt": "2026-01-20T22:53:17.102Z",
+      "actualHours": 0.08903222222222222
     },
     "S2-D2": {
       "id": "S2-D2",
       "name": "Image Generation Lane",
       "sprint": 2,
       "agent": "D",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "high",
       "estimatedHours": 6,
@@ -1476,7 +1492,7 @@
       "name": "Silent Video Generation",
       "sprint": 2,
       "agent": "D",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "high",
       "estimatedHours": 8,
@@ -1498,7 +1514,7 @@
       "name": "Thumbnail Generation",
       "sprint": 2,
       "agent": "D",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 4,
@@ -1519,7 +1535,7 @@
       "name": "Media QA System",
       "sprint": 2,
       "agent": "D",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "high",
       "estimatedHours": 5,
@@ -2985,7 +3001,7 @@
       "name": "Task Context Registry",
       "sprint": 2,
       "agent": "A",
-      "status": "pending",
+      "status": "ready",
       "testStatus": "not_written",
       "complexity": "medium",
       "estimatedHours": 4,
@@ -3478,6 +3494,42 @@
       ],
       "startedAt": "2026-01-20T22:06:46.191Z",
       "lastActivityAt": "2026-01-20T22:15:18.684Z"
+    },
+    "agent-A-mkn66tfa": {
+      "agentId": "agent-A-mkn66tfa",
+      "agentType": "A",
+      "completedTasks": [
+        "S2-A1"
+      ],
+      "startedAt": "2026-01-20T22:32:54.646Z",
+      "lastActivityAt": "2026-01-20T22:39:38.638Z"
+    },
+    "agent-B-mkn6flsl": {
+      "agentId": "agent-B-mkn6flsl",
+      "agentType": "B",
+      "completedTasks": [
+        "S2-B1"
+      ],
+      "startedAt": "2026-01-20T22:39:44.661Z",
+      "lastActivityAt": "2026-01-20T22:42:25.008Z"
+    },
+    "agent-C-mkn6jeqz": {
+      "agentId": "agent-C-mkn6jeqz",
+      "agentType": "C",
+      "completedTasks": [
+        "S2-C1"
+      ],
+      "startedAt": "2026-01-20T22:42:42.155Z",
+      "lastActivityAt": "2026-01-20T22:47:43.762Z"
+    },
+    "agent-D-mkn6q5d6": {
+      "agentId": "agent-D-mkn6q5d6",
+      "agentType": "D",
+      "completedTasks": [
+        "S2-D1"
+      ],
+      "startedAt": "2026-01-20T22:47:56.586Z",
+      "lastActivityAt": "2026-01-20T22:53:17.102Z"
     }
   },
   "history": [
@@ -3953,7 +4005,55 @@
       "action": "complete",
       "taskId": "S1-D5",
       "agentId": "agent-D-mkn59773"
+    },
+    {
+      "timestamp": "2026-01-20T22:32:54.646Z",
+      "action": "dispatch",
+      "taskId": "S2-A1",
+      "agentId": "agent-A-mkn66tfa"
+    },
+    {
+      "timestamp": "2026-01-20T22:39:38.638Z",
+      "action": "complete",
+      "taskId": "S2-A1",
+      "agentId": "agent-A-mkn66tfa"
+    },
+    {
+      "timestamp": "2026-01-20T22:39:44.661Z",
+      "action": "dispatch",
+      "taskId": "S2-B1",
+      "agentId": "agent-B-mkn6flsl"
+    },
+    {
+      "timestamp": "2026-01-20T22:42:25.008Z",
+      "action": "complete",
+      "taskId": "S2-B1",
+      "agentId": "agent-B-mkn6flsl"
+    },
+    {
+      "timestamp": "2026-01-20T22:42:42.155Z",
+      "action": "dispatch",
+      "taskId": "S2-C1",
+      "agentId": "agent-C-mkn6jeqz"
+    },
+    {
+      "timestamp": "2026-01-20T22:47:43.762Z",
+      "action": "complete",
+      "taskId": "S2-C1",
+      "agentId": "agent-C-mkn6jeqz"
+    },
+    {
+      "timestamp": "2026-01-20T22:47:56.586Z",
+      "action": "dispatch",
+      "taskId": "S2-D1",
+      "agentId": "agent-D-mkn6q5d6"
+    },
+    {
+      "timestamp": "2026-01-20T22:53:17.102Z",
+      "action": "complete",
+      "taskId": "S2-D1",
+      "agentId": "agent-D-mkn6q5d6"
     }
   ],
-  "lastUpdated": "2026-01-20T22:15:18.684Z"
+  "lastUpdated": "2026-01-20T22:53:17.102Z"
 }
