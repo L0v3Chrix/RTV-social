@@ -40,7 +40,7 @@ interface Subscription {
  */
 export function createDomainEventBus(): DomainEventBus {
   const subscriptions: Subscription[] = [];
-  const eventHistory: Map<string, DomainEvent[]> = new Map();
+  const eventHistory = new Map<string, DomainEvent[]>();
 
   /**
    * Check if event type matches pattern

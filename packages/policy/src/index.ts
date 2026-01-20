@@ -74,5 +74,8 @@ export * from './kill-switch/index.js';
 // Re-export rate limiting
 export * from './rate-limiting/index.js';
 
+// Re-export policy engine
+export * from './engine/index.js';
+
 // Version
 export const VERSION = '0.0.0';

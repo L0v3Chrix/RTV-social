@@ -4,7 +4,7 @@
  * Database operations for the Client entity.
  * All functions require a database connection to be passed in.
  */
-import { eq, and, like, sql, desc, asc, isNull, or } from 'drizzle-orm';
+import { eq, and, like, sql, desc, asc, or } from 'drizzle-orm';
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 
 import { clients } from '@rtv/db/schema';
@@ -18,7 +18,7 @@ import type {
   PartialClientSettings,
 } from './types.js';
 import { ClientStatus, DEFAULT_PAGINATION, DEFAULT_CLIENT_SETTINGS } from './types.js';
-import { CreateClientSchema, UpdateClientSchema, ListClientsOptionsSchema } from './schemas.js';
+import { CreateClientSchema, UpdateClientSchema } from './schemas.js';
 import {
   ClientNotFoundError,
   DuplicateClientNameError,
@@ -358,7 +358,7 @@ export async function listClients(
   }
 
   const [countResult] = await countQuery;
-  const total = Number(countResult?.count ?? 0);
+  const total = countResult?.count ?? 0;
 
   // Get paginated results
   const offset = calculateOffset(page, pageSize);

@@ -19,7 +19,7 @@ import { getDb, closeConnection } from '../connection.js';
  * @param migrationsFolder Path to migrations folder (default: './drizzle')
  */
 export async function runMigrations(
-  migrationsFolder: string = './drizzle'
+  migrationsFolder = './drizzle'
 ): Promise<void> {
   const db = getDb();
 
@@ -39,7 +39,7 @@ export async function runMigrations(
  * Useful for CLI scripts and one-off migration runs
  */
 export async function runMigrationsAndClose(
-  migrationsFolder: string = './drizzle'
+  migrationsFolder = './drizzle'
 ): Promise<void> {
   try {
     await runMigrations(migrationsFolder);

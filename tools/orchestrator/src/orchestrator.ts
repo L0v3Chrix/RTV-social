@@ -12,6 +12,7 @@ import {
   TestStatus,
   Sprint,
   Agent,
+  Complexity,
   OrchestratorState,
   SprintStatus,
   AgentAssignment,
@@ -80,14 +81,15 @@ export class Orchestrator {
    */
   private async initializeFromDefinitions(): Promise<void> {
     for (const def of TASK_DEFINITIONS) {
+      // Map TaskDefinition.track to Task.agent
       this.state.tasks[def.id] = {
         id: def.id,
         name: def.name,
         sprint: def.sprint,
-        agent: def.agent,
+        agent: def.track, // TaskDefinition uses 'track', Task uses 'agent'
         status: 'pending',
         testStatus: 'not_written',
-        complexity: def.complexity,
+        complexity: this.inferComplexity(def.estimatedHours), // Infer from hours
         estimatedHours: def.estimatedHours,
         dependencies: def.dependencies,
         blocks: def.blocks,
@@ -101,6 +103,15 @@ export class Orchestrator {
     // Compute initial ready status
     this.updateReadyStatus();
     await this.save();
+  }
+
+  /**
+   * Infer complexity from estimated hours
+   */
+  private inferComplexity(hours: number): Complexity {
+    if (hours <= 2) return 'low';
+    if (hours <= 5) return 'medium';
+    return 'high';
   }
 
   /**

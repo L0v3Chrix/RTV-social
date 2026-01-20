@@ -28,7 +28,7 @@ export async function retry<T>(
     backoffMultiplier = 2,
   } = options;
 
-  let lastError: Error | undefined;
+  let lastError: Error = new Error('All attempts failed');
   let delay = initialDelayMs;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -55,16 +55,20 @@ export async function withTimeout<T>(
   timeoutMs: number,
   errorMessage = 'Operation timed out'
 ): Promise<T> {
-  let timeoutId: ReturnType<typeof setTimeout>;
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
   const timeoutPromise = new Promise<never>((_, reject) => {
-    timeoutId = setTimeout(() => reject(new Error(errorMessage)), timeoutMs);
+    timeoutId = setTimeout(() => {
+      reject(new Error(errorMessage));
+    }, timeoutMs);
   });
 
   try {
     return await Promise.race([promise, timeoutPromise]);
   } finally {
-    clearTimeout(timeoutId!);
+    if (timeoutId !== undefined) {
+      clearTimeout(timeoutId);
+    }
   }
 }
 

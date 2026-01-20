@@ -82,7 +82,7 @@ async function main(): Promise<void> {
 }
 
 // Run the CLI
-main().catch((error) => {
+main().catch((error: unknown) => {
   console.error('Unhandled error:', error);
   process.exit(1);
 });

@@ -261,6 +261,37 @@ importers:
         specifier: ^2.1.0
         version: 2.1.9(@types/node@20.19.30)
 
+  packages/runner:
+    dependencies:
+      '@rtv/core':
+        specifier: workspace:*
+        version: link:../core
+      '@rtv/db':
+        specifier: workspace:*
+        version: link:../db
+      '@rtv/memory':
+        specifier: workspace:*
+        version: link:../memory
+      nanoid:
+        specifier: ^5.0.0
+        version: 5.1.6
+      zod:
+        specifier: ^3.22.0
+        version: 3.25.76
+    devDependencies:
+      '@opentelemetry/api':
+        specifier: ^1.7.0
+        version: 1.7.0
+      '@types/node':
+        specifier: ^20.11.0
+        version: 20.19.30
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@20.19.30)
+
   packages/types:
     devDependencies:
       typescript:
@@ -1550,7 +1581,6 @@ packages:
   /@opentelemetry/api@1.7.0:
     resolution: {integrity: sha512-AdY5wvN0P2vXBi3b29hxZgSFvdhdxPB9+f0B6s//P9Q8nibRWeA3cHm8UmLpio9ABigkVHJ5NMPk+Mz8VCCyrw==}
     engines: {node: '>=8.0.0'}
-    dev: false
 
   /@opentelemetry/auto-instrumentations-node@0.41.1(@opentelemetry/api@1.7.0):
     resolution: {integrity: sha512-gQG0mHlPVBQveuemqNYkrL4IB3T6v2e5sMiDI6FQzFWeLzzFrC04R4fY6AE1YmkhOyteCDpHL/U6CULP2mkt8w==}

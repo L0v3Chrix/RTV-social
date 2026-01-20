@@ -8,7 +8,6 @@ import { nanoid } from 'nanoid';
 import {
   PolicySchema,
   PolicyInputSchema,
-  PolicyRuleInputSchema,
 } from './index.js';
 import type {
   Policy,

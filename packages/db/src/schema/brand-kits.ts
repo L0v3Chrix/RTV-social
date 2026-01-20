@@ -5,7 +5,7 @@
  * Used by AI agents to maintain consistent brand messaging.
  */
 
-import { pgTable, varchar, jsonb, integer, index, foreignKey, unique } from 'drizzle-orm/pg-core';
+import { pgTable, jsonb, integer, index, foreignKey, unique } from 'drizzle-orm/pg-core';
 import { idColumn, timestamps, clientIdColumn } from './base.js';
 import { clients } from './clients.js';
 

@@ -21,7 +21,7 @@ export type JsonValue =
   | { [key: string]: JsonValue };
 
 /** JSON object type */
-export type JsonObject = { [key: string]: JsonValue };
+export type JsonObject = Record<string, JsonValue>;
 
 /** Brand type for nominal typing */
 export type Brand<T, B> = T & { __brand: B };

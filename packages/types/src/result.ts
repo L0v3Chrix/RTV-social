@@ -41,14 +41,14 @@ export function err<E>(error: E): Err<E> {
  * Check if result is Ok
  */
 export function isOk<T, E>(result: Result<T, E>): result is Ok<T> {
-  return result.ok === true;
+  return result.ok;
 }
 
 /**
  * Check if result is Err
  */
 export function isErr<T, E>(result: Result<T, E>): result is Err<E> {
-  return result.ok === false;
+  return !result.ok;
 }
 
 /**
@@ -58,7 +58,11 @@ export function unwrap<T, E>(result: Result<T, E>): T {
   if (isOk(result)) {
     return result.value;
   }
-  throw result.error;
+  // Re-throw if error is an Error, otherwise wrap it
+  if (result.error instanceof Error) {
+    throw result.error;
+  }
+  throw new Error(String(result.error));
 }
 
 /**

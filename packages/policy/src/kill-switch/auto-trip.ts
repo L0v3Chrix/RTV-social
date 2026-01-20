@@ -236,7 +236,7 @@ export function createAutoTripMonitor(deps: AutoTripMonitorDeps): AutoTripMonito
       if (checkInterval) return;
 
       checkInterval = setInterval(() => {
-        checkAllTargets().catch((err) => {
+        checkAllTargets().catch((err: unknown) => {
           console.error('[AutoTrip] Check failed:', err);
         });
       }, config.checkIntervalMs);

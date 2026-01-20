@@ -392,7 +392,7 @@ export function checkTenantOwnership<T extends TenantRecord>(
   record: T | null | undefined,
   clientId: string
 ): record is T {
-  return record != null && record.clientId === clientId;
+  return record !== null && record !== undefined && record.clientId === clientId;
 }
 
 /**

@@ -6,7 +6,7 @@
  */
 
 import { eq } from 'drizzle-orm';
-import { getDb, initializeConnection, closeConnection } from '../connection.js';
+import { getDb, initializeConnection } from '../connection.js';
 import { clients } from '../schema/clients.js';
 import { brandKits } from '../schema/brand-kits.js';
 import { knowledgeBases } from '../schema/knowledge-bases.js';

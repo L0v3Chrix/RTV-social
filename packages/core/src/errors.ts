@@ -46,7 +46,7 @@ export class BudgetExceededError extends RTVError {
     used: number
   ) {
     super(
-      `Budget exceeded: ${budgetType} (used ${used}/${limit})`,
+      `Budget exceeded: ${budgetType} (used ${String(used)}/${String(limit)})`,
       'BUDGET_EXCEEDED',
       { budgetType, limit, used }
     );

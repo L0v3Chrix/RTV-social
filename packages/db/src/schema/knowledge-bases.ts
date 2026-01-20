@@ -8,7 +8,7 @@
  * LLM only sees slices (retrieved evidence) at any time."
  */
 
-import { pgTable, varchar, text, jsonb, boolean, integer, index, foreignKey, uuid, unique } from 'drizzle-orm/pg-core';
+import { pgTable, varchar, text, jsonb, integer, index, foreignKey, uuid, unique } from 'drizzle-orm/pg-core';
 import { idColumn, timestamps, clientIdColumn } from './base.js';
 import { clients } from './clients.js';
 
