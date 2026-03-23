@@ -46,8 +46,8 @@
     "@rtv/db": "workspace:*",
     "@rtv/types": "workspace:*",
     "@rtv/observability": "workspace:*",
-    "nanoid": "^5.0.0",
-    "slugify": "^1.6.6",
+    "nanoid": "^5.1.7",
+    "slugify": "^1.6.8",
     "zod": "^3.22.0"
   },
   "devDependencies": {
