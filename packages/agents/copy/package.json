@@ -24,7 +24,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "nanoid": "^5.0.0",
+    "nanoid": "^5.1.7",
     "zod": "^3.22.0"
   },
   "devDependencies": {
